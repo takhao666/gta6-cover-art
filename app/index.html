@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice City Nights — GTA-style Cover Maker</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main class="app">
+  <section class="controls" aria-label="Cover controls">
+    <h1>Vice City Nights</h1>
+    <p class="tagline">Your photo, a caption, and a Vice City sunset — a poster cover in three clicks. Everything runs offline, in your browser.</p>
+
+    <fieldset>
+      <legend>1 · Photos</legend>
+      <label class="file">Add your photos
+        <input id="photoFile" type="file" accept="image/*" multiple>
+      </label>
+      <div class="row">
+        <button type="button" data-sample="pier">Sample: Pier</button>
+        <button type="button" data-sample="boulevard">Sample: Boulevard</button>
+      </div>
+      <div id="photos" class="photos" aria-label="Loaded photos"></div>
+      <div class="row">
+        <button id="fillAll" type="button">Fill all panels</button>
+        <button id="oneEach" type="button">One photo per panel</button>
+      </div>
+      <p class="hint">Click a photo, then a panel, to place it. Click a panel on the preview to select it.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>2 · Layout &amp; grade</legend>
+      <div class="row wrap">
+        <button type="button" data-layout="grid">Four Panel Grid</button>
+        <button type="button" data-layout="hero">Hero And Three</button>
+        <button type="button" data-layout="full">Full Bleed</button>
+        <button type="button" data-layout="tilted">Tilted Snapshots</button>
+      </div>
+      <div class="row wrap">
+        <button type="button" data-grade="sunset">Sunset</button>
+        <button type="button" data-grade="neon">Neon Nights</button>
+        <button type="button" data-grade="vice">Vice Pink</button>
+        <button type="button" data-grade="noir">Noir</button>
+        <button type="button" data-grade="original">Original</button>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>3 · Caption</legend>
+      <label>Title
+        <input id="title" type="text" maxlength="40" value="VICE CITY NIGHTS">
+      </label>
+      <label>Subtitle
+        <input id="subtitle" type="text" maxlength="60" value="a sunset heist in the city that never sleeps">
+      </label>
+      <div class="row">
+        <label class="grow">Title font
+          <select id="titleFont">
+            <option>Anton</option>
+            <option>Bebas Neue</option>
+            <option>Pacifico</option>
+          </select>
+        </label>
+        <span class="swatches" aria-label="Title colour">
+          <button type="button" data-color="#ffffff" style="background:#ffffff" aria-label="White"></button>
+          <button type="button" data-color="#ffd166" style="background:#ffd166" aria-label="Gold"></button>
+          <button type="button" data-color="#ff5da2" style="background:#ff5da2" aria-label="Pink"></button>
+          <button type="button" data-color="#19d3da" style="background:#19d3da" aria-label="Cyan"></button>
+          <button type="button" data-color="#111111" style="background:#111111" aria-label="Black"></button>
+        </span>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>4 · Crop the selected panel</legend>
+      <div id="panels" class="row wrap" aria-label="Panels"></div>
+      <label>Zoom <span id="zoomVal">100%</span>
+        <input id="zoom" type="range" min="1" max="2.5" step="0.05" value="1">
+      </label>
+      <label>Pan left–right
+        <input id="panX" type="range" min="-0.5" max="0.5" step="0.01" value="0">
+      </label>
+      <label>Pan up–down
+        <input id="panY" type="range" min="-0.5" max="0.5" step="0.01" value="0">
+      </label>
+      <p class="hint">Or drag the photo right on the preview.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>5 · Export</legend>
+      <div class="row wrap">
+        <button type="button" data-size="square">1080 × 1080</button>
+        <button type="button" data-size="portrait">1080 × 1350</button>
+        <button type="button" data-size="wide">1920 × 1080</button>
+      </div>
+      <div class="row">
+        <button id="undo" type="button">Undo</button>
+        <button id="redo" type="button">Redo</button>
+        <button id="export" type="button" class="primary">Export PNG</button>
+      </div>
+      <p id="status" role="status">Pick a photo to begin.</p>
+    </fieldset>
+  </section>
+  <section class="stage" aria-label="Cover preview">
+    <canvas id="cover" width="1080" height="1080"></canvas>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
